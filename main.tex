@@ -1,0 +1,100 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{tabularx}
+\usepackage{setspace}
+\usepackage{float}
+\usepackage{enumitem}
+\onehalfspacing
+\title{Damped Harmonic Oscillators}
+\author{Lukas Wolf, Jack Tassone, Rowan Jurgens}
+\date{March 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    In this investigation, the dynamics of a forced, damped harmonic oscillator using a mass-spring system was examined. The spring constant was determined using two independent methods: static force balance and natural frequency measurements. The values obtained were $k_{\text{static}}=3.539 \pm 0.001~\unit{\newton\per\meter}$ and $k_{\text{frequency}}=3.26 \pm 0.01~\unit{\newton\per\meter}$. To measure the k value using the static method, we simply tested how far different masses would stretch the spring. To measure the value $k$ using the natural frequency method, we counted its oscillations and used a series of equations to convert it into the value $k$. There is a significant difference between these values, and they are not within error of each other. We believe that the dominant source of error in this experiment was to correctly measure the impact that drag had on the system when measuring it using the frequency method. The dominant source of error when calculating the $k$ value using the static method was measuring the distance due to the limits of our sensor. 
+\end{abstract}
+
+\newpage
+
+\section{Materials and Methods}
+The materials of our lab consisted of a spring, varying sizes of paper, labeled masses, a motor, a Vernier MD-BTD motion sensor, and Logger Pro software. To begin, we measured the $k$ value of the spring using the static force method. This consisted of measuring the spring at its equilibrium position without a mass using the motion sensor, then adding a mass onto the spring and measuring the difference in height between the two. With this data, we were able to create a graph using Excel of the spring force related to the distance it stretched, and using Hooke’s Law we were able to deduce that the slope of a line of best fit would be the value of the spring constant. To measure the spring constant using the natural frequency we had the spring at the highest position it could be with the mass, then we let it drop and started recording the distance it traveled at 10 Hz for 60 seconds using the motion sensor. From there we were able to plot the oscillations with respect to time, finding that it oscillated 65 times in the 60 seconds that were measured. From that we were able to deduce the period, frequency, and spring constant. To find the drag of each system, we took a mass hanging on the spring with a known area of paper, dropped it, and let it oscillate for 60 seconds while making 10 measurements every second using the motion sensor, then once it was in Logger Pro we fitted a sine function with a decaying envelope, which gave us the angular frequency and $b$, the drag coefficient depending on the area. This process was repeated for different masses and plate areas and made a graph with an x-axis of area and a y-axis of $b$.
+
+\section{Collected Data and Results}
+
+\subsection{Undamped Spring Constant}
+The masses used started with 50 grams and increased by 10 grams up to 110 grams for 7 total measurements. The attachment hook added 1.7 grams to and an uncertainty of 0.1 grams was assumed for the entire apparatus.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/calc_force.png}
+\caption{The force and the amount the string stretched for different masses that we suspended on the spring. Using Excel we created a line of best fit and found the squares of the residuals which we used to calculate the error, using the Mean Squared Error method. }
+\label{fig:calcforce}
+\end{figure}
+
+\begin{equation}
+    \text{MSE}=\frac{1}{n} \sum_{i=1}^{n}(y_{i}-\hat{y}_{i})^{2}
+\end{equation}
+\begin{equation}
+    \text{MSE}=\frac{1}{n} \sum_{i=1}^{n}(x_{i}-\hat{x}_{i})^{2}
+\end{equation}
+
+Using the Mean Squared Error calculation for the values of both $x$ and $y$ [1], we calculated the error in each of those aspects, then adding it up we calculated a total error of $0.001~\unit{\newton\per\meter}$. The slope of this line told us the $k$ value of our spring according to Hooke’s Law of $F=-kx$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/position_over_time.png}
+\caption{This graph shows the oscillations of a 70 gram mass with no paper plate dropped from its highest height for 60 seconds. We physically counted the number of oscillations that you can see in this chart and found that it oscillated 65 times in 60 seconds. We gave ourselves an error bar of 0.5 oscillations for this count. We then used this to calculate the period of oscillation using the equation of $T=t/n$ where $T$ is the period, $t$ is the amount of time measured, and $n$ is the number of oscillations in that time period.}
+\label{fig:position}
+\end{figure}
+
+\begin{equation}
+    k=\left(\frac{2\pi}{T}\right)^{2}m
+\end{equation}
+Using equation 3 we were able to calculate the $k_{\text{frequency}}$ which we found to be $3.26 \pm 0.01~\unit{\newton\per\meter}$. We know that this value of $k$ is slightly smaller than the actual value because we did not account for drag in the equation. 
+
+\subsection{Damping}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{figures/damped_oscillator_5cm_square.png}
+    \caption{Position over time with a $25$}
+    \label{fig:5cm}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{figures/damped_oscillator_7cm_square.png}
+    \caption{Caption}
+    \label{fig:7cm}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{figures/damped_oscillator_9cm_square.png}
+    \caption{Caption}
+    \label{fig:9cm}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{figures/damped_oscillator_10cm_square.png}
+    \caption{Caption}
+    \label{fig:10cm}
+\end{figure}
+
+\section{Analysis and Discussion}
+The $k$ values we found for the spring using two different methods disagree with each other. We know that this is due to the fact that we were unable to find the drag coefficient for the masses which decreased $k_{\text{frequency}}$. While we were able to do some calculations to estimate the drag coefficient, we were not able to get far enough into them to get an accurate answer. Using the static force method we believe that our answer is highly accurate due to the simplicity and repeatability of the method, as opposed to the natural frequency method where it is a moving system which creates variability such as drag and error in measurement. If we were to do this lab again we would focus more of our time on finding the drag coefficient in order to get a more accurate measurement of the forced damped oscillator.
+
+\section*{References}
+
+\begin{enumerate}[label={[\arabic*]}]
+    \item H. Pishro-Nik, "Introduction to probability, statistics, and random processes", available at https://www.probabilitycourse.com, Kappa Research LLC, 2014.
+\end{enumerate}
+
+\end{document}
